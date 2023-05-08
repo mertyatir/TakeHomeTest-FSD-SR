@@ -1,5 +1,5 @@
-# TakeHome-FED-SR
-## Sr. Frontend Developer - Take Home Test 
+# TakeHome-FSD-SR
+## Sr. Fullstack Software Engineer - Take Home Test 
 
 As part of our application procedure, we are interested in evaluating your capabilities through a brief assignment. 
 
