@@ -94,7 +94,7 @@ To complete your assignment, please fork this repo and commit your work to your 
 give us access to your fork so we can review it. 
 The deadline for this round of submissions is:
 
-**May 11, 14:00 GMT**
+**July 1, 14:00 GMT**
 
 Thank you!
 
