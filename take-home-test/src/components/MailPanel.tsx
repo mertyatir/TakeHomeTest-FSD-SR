@@ -7,6 +7,8 @@ const MailPanel = () => {
 
   const [emails, setEmails] = useState<Email[]>([])
 
+  console.log(emails)
+
   useEffect(() => {
     fetch("/api/emails")
       .then((response) => response.json())

@@ -3,6 +3,8 @@ import { Inter } from "next/font/google"
 
 import { AppProvider } from "@/contexts/AppContext"
 
+import { initializeDatabase, getEmails, createEmailTable } from "@/database"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
@@ -15,9 +17,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  //createEmailTable()
-  //initializeDatabase()
-  //getEmails().then((emails) => console.log(emails))
+  /*
+  // CREATE AND POPULATE DATABASE WITH EMAILS
+  
+  createEmailTable()
+  initializeDatabase()
+  getEmails().then((emails) => console.log(emails))
+
+  */
 
   return (
     <html lang="en">

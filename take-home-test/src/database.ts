@@ -11,7 +11,7 @@ const createEmailTable = () => {
   db.run(`
     CREATE TABLE IF NOT EXISTS emails (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      senderName TEXT,
+      sender TEXT,
       subject TEXT,
       receivedAt DATETIME
     )
@@ -24,11 +24,11 @@ const initializeDatabase = () => {
   const db = openDatabase()
   db.serialize(() => {
     db.run(`
-      INSERT INTO emails (senderName, subject, receivedAt)
+      INSERT INTO emails (sender, subject, receivedAt)
       VALUES ('John Doe', 'Hello', 'May 4')
     `)
     db.run(`
-      INSERT INTO emails (senderName, subject, receivedAt)
+      INSERT INTO emails (sender, subject, receivedAt)
       VALUES ('Jane Smith', 'Greetings', 'April 29')
     `)
   })
