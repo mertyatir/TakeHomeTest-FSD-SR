@@ -15,6 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  //createEmailTable()
+  //initializeDatabase()
+  //getEmails().then((emails) => console.log(emails))
+
   return (
     <html lang="en">
       <body className={inter.className}>

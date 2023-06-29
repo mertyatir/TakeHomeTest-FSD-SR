@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react"
 
+import { Email } from "@/database"
+
 const MailPanel = () => {
   const [isPrimary, setIsPrimary] = useState(true)
+
+  const [emails, setEmails] = useState<Email[]>([])
+
+  useEffect(() => {
+    fetch("/api/emails")
+      .then((response) => response.json())
+      .then((data) => setEmails(data))
+      .catch((error) => console.error(error))
+  }, [])
+
+  /*
 
   const mockData = [
     {
@@ -35,6 +48,8 @@ const MailPanel = () => {
       receivedAt: "April 29",
     },
   ]
+
+  */
   return (
     <div className="flex flex-col flex-grow h-screen">
       <div className="flex items-center justify-between bg-gray-100 p-4">
@@ -64,7 +79,7 @@ const MailPanel = () => {
       {/* Email List */}
       <div className="flex-grow bg-white">
         {isPrimary &&
-          mockData.map((email, index) => (
+          emails.map((email, index) => (
             <div
               key={index}
               className="flex items-center justify-between border-b p-4"

@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3"
 
 // Open the SQLite database connection
 const openDatabase = () => {
-  return new sqlite3.Database("./data/database.db") // Replace with the path to your SQLite database file
+  return new sqlite3.Database("./database.db") // Replace with the path to your SQLite database file
 }
 
 // Create the "emails" table
@@ -31,22 +31,6 @@ const initializeDatabase = () => {
       INSERT INTO emails (senderName, subject, receivedAt)
       VALUES ('Jane Smith', 'Greetings', 'April 29')
     `)
-    db.run(`
-    INSERT INTO emails (senderName, subject, receivedAt)
-    VALUES ('John Doe', 'Hello', 'May 4')
-  `)
-    db.run(`
-    INSERT INTO emails (senderName, subject, receivedAt)
-    VALUES ('Jane Smith', 'Greetings', 'April 29')
-  `)
-    db.run(`
-      INSERT INTO emails (senderName, subject, receivedAt)
-      VALUES ('John Doe', 'Hello', 'May 4')
-    `)
-    db.run(`
-      INSERT INTO emails (senderName, subject, receivedAt)
-      VALUES ('Jane Smith', 'Greetings', 'April 29')
-    `)
   })
   db.close()
 }
@@ -67,7 +51,7 @@ const getEmails = (): Promise<Email[]> => {
   })
 }
 
-interface Email {
+type Email = {
   id: number
   sender: string
   subject: string
