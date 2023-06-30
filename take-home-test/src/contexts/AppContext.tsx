@@ -7,6 +7,8 @@ type AppContextType = {
   toggleSettings: () => void
   showExtendedSidebar: boolean
   toggleExtendedSidebar: () => void
+  showMailPopup: boolean
+  setShowMailPopup: (value: boolean) => void
 }
 
 type AppProviderProps = {
@@ -18,6 +20,8 @@ const initialContext: AppContextType = {
   toggleSettings: () => {},
   showExtendedSidebar: false,
   toggleExtendedSidebar: () => {},
+  showMailPopup: false,
+  setShowMailPopup: () => {},
 }
 
 export const AppContext = createContext<AppContextType>(initialContext)
@@ -25,6 +29,7 @@ export const AppContext = createContext<AppContextType>(initialContext)
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [showSettings, setShowSettings] = useState(false)
   const [showExtendedSidebar, setShowExtendedSidebar] = useState(false)
+  const [showMailPopup, setShowMailPopup] = useState(false)
 
   const toggleSettings = () => {
     setShowSettings(!showSettings)
@@ -39,6 +44,8 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     toggleSettings,
     showExtendedSidebar,
     toggleExtendedSidebar,
+    showMailPopup,
+    setShowMailPopup,
   }
 
   return (

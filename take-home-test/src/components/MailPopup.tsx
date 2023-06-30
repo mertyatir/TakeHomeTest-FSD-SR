@@ -1,8 +1,8 @@
 import React from "react"
 
-const ExtendedSidebar = () => {
+const MailPopup = () => {
   return (
-    <aside className="flex  w-64 bg-white ml-5 rounded-3xl">
+    <aside className="absolute top-10 w-64 bg-white ml-5 rounded-3xl">
       <nav className="ml-5">
         <ul className="py-4">
           <li className="mb-2">
@@ -29,4 +29,4 @@ const ExtendedSidebar = () => {
   )
 }
 
-export default ExtendedSidebar
+export default MailPopup

@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react"
 
 import { Email } from "@/database"
 
+import CropSquareIcon from "@mui/icons-material/CropSquare"
+import StarBorderIcon from "@mui/icons-material/StarBorder"
+import DoubleArrowTwoToneIcon from "@mui/icons-material/DoubleArrowTwoTone"
+
 const MailPanel = () => {
-  const [isPrimary, setIsPrimary] = useState(true)
+  const [selectedTab, setSelectedTab] = useState("primary")
 
   const [emails, setEmails] = useState<Email[]>([])
-
-  console.log(emails)
 
   useEffect(() => {
     fetch("/api/emails")
@@ -53,25 +55,37 @@ const MailPanel = () => {
 
   */
   return (
-    <div className="flex flex-col flex-grow h-screen">
-      <div className="flex items-center justify-between bg-gray-100 p-4">
+    <div className="flex flex-col flex-grow h-screen ">
+      <div className="flex items-center justify-between bg-white  p-4">
         {/* Tabs */}
         <div className="flex justify-start w-2/5 ">
           <div
-            className="p-3 hover:bg-gray-200 cursor-pointer w-full"
-            onClick={() => setIsPrimary(true)}
+            className={`p-3 hover:bg-gray-200 cursor-pointer w-full ${
+              selectedTab === "primary"
+                ? "border-b-2 border-blue-500 text-blue-500 font-bold"
+                : ""
+            }`}
+            onClick={() => setSelectedTab("primary")}
           >
             Primary
           </div>
           <div
-            className="p-3 hover:bg-gray-200 w-full cursor-pointer"
-            onClick={() => setIsPrimary(false)}
+            className={`p-3 hover:bg-gray-200 cursor-pointer w-full ${
+              selectedTab === "promotions"
+                ? "border-b-2 border-blue-500 text-blue-500 font-bold"
+                : ""
+            }`}
+            onClick={() => setSelectedTab("promotions")}
           >
             Promotions
           </div>
           <div
-            className="p-3 hover:bg-gray-200 w-full cursor-pointer"
-            onClick={() => setIsPrimary(false)}
+            className={`p-3 hover:bg-gray-200 cursor-pointer  w-full ${
+              selectedTab === "social"
+                ? "border-b-2 border-blue-500 text-blue-500 font-bold"
+                : ""
+            }`}
+            onClick={() => setSelectedTab("social")}
           >
             Social
           </div>
@@ -80,17 +94,32 @@ const MailPanel = () => {
 
       {/* Email List */}
       <div className="flex-grow bg-white">
-        {isPrimary &&
+        {selectedTab === "primary" &&
           emails.map((email, index) => (
             <div
               key={index}
               className="flex items-center justify-between border-b p-4"
             >
               <div>
-                <div className="font-semibold">{email.sender}</div>
-                <div className="text-gray-500">{email.subject}</div>
+                <div className="flex flex-row items-center">
+                  <CropSquareIcon className="mr-2" />
+                  <StarBorderIcon className="mr-2" />
+                  <DoubleArrowTwoToneIcon className="mr-2" />
+                  <div className="font-semibold">{email.sender}</div>
+                </div>
               </div>
-              <div className="text-gray-500">{email.receivedAt}</div>
+              <div className="flex flex-row  ">
+                <div className="font-semibold ml-5 ">{email.subject}</div>
+                <div>
+                  <p className="mx-4 line-clamp-1 text-gray-700">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Magnam maxime voluptatum facere placeat, officiis odit et,
+                    debitis eius dignissimos esse eveniet! Aut dolores, vitae
+                    impedit eum ullam quae suscipit architecto
+                  </p>
+                </div>
+              </div>
+              <div className="font-semibold basis-28">{email.receivedAt}</div>
             </div>
           ))}
       </div>

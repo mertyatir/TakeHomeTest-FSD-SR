@@ -1,4 +1,3 @@
-// SettingsPanel.jsx
 import React from "react"
 
 const SettingsPanel = () => {

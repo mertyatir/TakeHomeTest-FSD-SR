@@ -6,13 +6,21 @@ import SearchInput from "./SearchInput"
 
 import { AppContext } from "@/contexts/AppContext"
 
+import AppsIcon from "@mui/icons-material/Apps"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import SettingsIcon from "@mui/icons-material/Settings"
+import GoogleIcon from "@mui/icons-material/Google"
+
 const Header = () => {
   const { toggleSettings } = useContext(AppContext)
 
   return (
-    <header className="flex items-center justify-between bg-white shadow p-4">
+    <header className="flex items-center justify-between bg-gray-100 shadow p-4">
       {/* Logo */}
-      <div className="text-xl font-bold">Logo Placeholder</div>
+      <div className="text-xl items-center flex-row flex">
+        <GoogleIcon />
+        <div className="ml-1">Gmail</div>
+      </div>
 
       {/* Search Input */}
       <SearchInput />
@@ -20,10 +28,16 @@ const Header = () => {
       <div className="flex flex-row gap-5">
         <div onClick={toggleSettings} className="cursor-pointer">
           {/* Settings Icon */}
-          <div>Settings Icon</div>
+          <div>
+            <SettingsIcon />
+          </div>
         </div>
-        <div>Apps Icon</div>
-        <div>Avatar Icon</div>
+        <div>
+          <AppsIcon />
+        </div>
+        <div>
+          <AccountCircleIcon />
+        </div>
       </div>
     </header>
   )
