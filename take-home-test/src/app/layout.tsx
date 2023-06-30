@@ -17,14 +17,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  /*
   // CREATE AND POPULATE DATABASE WITH EMAILS
-  
+
+  /*
+
   createEmailTable()
   initializeDatabase()
-  getEmails().then((emails) => console.log(emails))
 
   */
+
+  getEmails().then((emails) => console.log(emails))
 
   return (
     <html lang="en">

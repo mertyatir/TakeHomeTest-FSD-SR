@@ -39,7 +39,6 @@ export default function Home() {
               {showSettings && <SettingsPanel />}
             </div>
           </div>
-          M
         </div>
       </div>
     </main>

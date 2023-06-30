@@ -51,6 +51,24 @@ const getEmails = (): Promise<Email[]> => {
   })
 }
 
+// Delete an email by ID
+const deleteEmail = (id: number): Promise<void> => {
+  const db = openDatabase()
+
+  return new Promise((resolve, reject) => {
+    const query = "DELETE FROM emails WHERE id = ?"
+
+    db.run(query, id, (error) => {
+      if (error) {
+        reject(error)
+      } else {
+        console.log(`Deleted email with ID ${id}`)
+        resolve()
+      }
+    })
+  })
+}
+
 type Email = {
   id: number
   sender: string
@@ -60,4 +78,4 @@ type Email = {
 
 export type { Email }
 
-export { createEmailTable, initializeDatabase, getEmails }
+export { createEmailTable, initializeDatabase, getEmails, deleteEmail }

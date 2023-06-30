@@ -6,6 +6,11 @@ import CropSquareIcon from "@mui/icons-material/CropSquare"
 import StarBorderIcon from "@mui/icons-material/StarBorder"
 import DoubleArrowTwoToneIcon from "@mui/icons-material/DoubleArrowTwoTone"
 
+import DeleteIcon from "@mui/icons-material/Delete"
+
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 const MailPanel = () => {
   const [selectedTab, setSelectedTab] = useState("primary")
 
@@ -18,42 +23,31 @@ const MailPanel = () => {
       .catch((error) => console.error(error))
   }, [])
 
-  /*
+  const handleDelete = (id: number) => {
+    console.log("props id", id)
 
-  const mockData = [
-    {
-      sender: "John Doe",
-      subject: "Hello",
-      receivedAt: "May 4",
-    },
-    {
-      sender: "Jane Smith",
-      subject: "Meeting Reminder",
-      receivedAt: "April 29",
-    },
-    {
-      sender: "John Doe",
-      subject: "Hello",
-      receivedAt: "May 4",
-    },
-    {
-      sender: "Jane Smith",
-      subject: "Meeting Reminder",
-      receivedAt: "April 29",
-    },
-    {
-      sender: "John Doe",
-      subject: "Hello",
-      receivedAt: "May 4",
-    },
-    {
-      sender: "Jane Smith",
-      subject: "Meeting Reminder",
-      receivedAt: "April 29",
-    },
-  ]
+    fetch(`/api/emails/${id}`, { method: "DELETE" })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        if (data.message) {
+          const updatedEmails = emails.filter((email) => email.id !== id)
+          setEmails(updatedEmails)
+          toast.success("Conversation moved to Trash", {
+            position: toast.POSITION.BOTTOM_LEFT,
+            autoClose: 3000,
+            hideProgressBar: true,
+            icon: false,
+            style: {
+              background: "black",
+              color: "white",
+            },
+          })
+        }
+      })
+      .catch((error) => console.error(error))
+  }
 
-  */
   return (
     <div className="flex flex-col flex-grow h-screen ">
       <div className="flex items-center justify-between bg-white  p-4">
@@ -120,9 +114,14 @@ const MailPanel = () => {
                 </div>
               </div>
               <div className="font-semibold basis-28">{email.receivedAt}</div>
+              <DeleteIcon
+                className="ml-2 text-gray-500 cursor-pointer"
+                onClick={() => handleDelete(email.id)}
+              />
             </div>
           ))}
       </div>
+      <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
     </div>
   )
 }
